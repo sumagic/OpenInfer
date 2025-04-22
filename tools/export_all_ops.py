@@ -45,8 +45,11 @@ def get_all_onnx_files(model_zoo):
 def load_model_and_simplified(model_path):
     logging.info("loading model: %s", model_path)
     model = onnx.load(model_path)
-    model_simp = onnxoptimizer.optimize(model)
-    return model_simp
+    if not model_path.endswith('_simplified.onnx'):
+        model_simp = onnxoptimizer.optimize(model)
+        onnx.save(model_simp, model_path.replace('.onnx', '_simplified.onnx'))
+        model = model_simp
+    return model
 
 def get_model_ops(model_simplified, all_ops={}):
     for node in model_simplified.graph.node:
