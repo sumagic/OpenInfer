@@ -22,7 +22,7 @@ def _print_args(args):
 
 def parse_args():
     parser = argparse.ArgumentParser(description='onnx ops analysis....')
-    parser.add_argument('--model_zoo', type=str, default='third/models', help='onnx model file')
+    parser.add_argument('--model_zoo', type=str, default='models', help='onnx model file')
     parser.add_argument('--search_len', type=int, default=3, help='max search length')
     parser.add_argument('--log_level', type=str, default='INFO', help='log level')
     args = parser.parse_args()
@@ -98,8 +98,8 @@ if __name__ == '__main__':
     for model_path in all_onnx_files:
         model_simplified = load_model_and_simplified(model_path)
         get_model_ops(model_simplified, all_ops)
-        get_model_ops_chain(model_simplified, all_ops_chain, args.search_len)
+        # get_model_ops_chain(model_simplified, all_ops_chain, args.search_len)
     logging.info('all ops: %s', all_ops)
-    # plt.bar(range(len(all_ops)), list(all_ops.values()))
-    # plt.xticks(range(len(all_ops)), list(all_ops.keys()), rotation=90)
-    # plt.show()
+    plt.bar(range(len(all_ops)), list(all_ops.values()))
+    plt.xticks(range(len(all_ops)), list(all_ops.keys()), rotation=90)
+    plt.show()
