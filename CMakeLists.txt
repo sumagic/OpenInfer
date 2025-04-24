@@ -5,4 +5,4 @@ project(OpenInference CUDA CXX)
 set(CUTLASS_PATH ${CMAKE_SOURCE_DIR}/third_party/cutlass)
 
 add_subdirectory(${CUTLASS_PATH})
-add_subdirectory(${CMAKE_SOURCE_DIR}/)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src)
